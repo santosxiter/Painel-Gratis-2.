@@ -1,0 +1,2 @@
+# Painel-Gratis-2.
+MELHOR GERADOR DE SENSI DO CENARIO
