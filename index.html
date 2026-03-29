@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santos Xit</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at top, #020617, #000000);
+    color: #00ff9c;
+}
+
+/* ANIMAÇÃO GLOBAL */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);} 
+    to { opacity: 1; transform: translateY(0);} 
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background: rgba(0,0,0,0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #00ff9c;
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #00ff9c;
+    background: black;
+    color: #00ff9c;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #00ff9c;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.2s;
+}
+
+button:active {
+    transform: scale(0.95);
+    background: #00cc7a;
+}
+
+#app { display: none; padding: 15px; }
+
+.header {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 14px;
+    color: #00ff9c;
+}
+
+.menu {
+    margin-top: 70px;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.menu button {
+    margin: 6px auto;
+    width: 90%;
+    background: rgba(0,255,156,0.1);
+    color: #00ff9c;
+    border: 1px solid #00ff9c;
+}
+
+.hidden { display: none; }
+
+/* TOAST */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.95);
+    border: 1px solid #00ff9c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s;
+    width: auto;
+    max-width: 90%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* WATERMARK */
+.watermark {
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    font-size: 10px;
+    opacity: 0.4;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container" id="loginBox">
+    <div class="box">
+        <h2>LOGIN</h2>
+        <input type="text" id="login" placeholder="Login">
+        <input type="password" id="senha" placeholder="Senha">
+        <button onclick="entrar()">ENTRAR</button>
+        <p id="erro" style="color:red;"></p>
+    </div>
+</div>
+
+<div id="app">
+    <div class="header">SANTOS XIT</div>
+
+    <div class="menu" id="mainMenu">
+        <button onclick="abrirMenu()">INJETAR CONFIGURAÇÕES</button>
+    </div>
+
+    <div class="menu hidden" id="configMenu">
+        <button onclick="acao('XIT')">INJETAR XIT</button>
+        <button onclick="acao('AIMLOCK')">INJETAR AIMLOCK</button>
+        <button onclick="acao('HS')">INJETAR HS</button>
+        <button onclick="acao('TRICK')">INJETAR TRICK</button>
+        <button onclick="acao('FULL VERMELHO')">INJETAR FULLVERMELHO</button>
+        <button onclick="acao('CONFIG')">INJETAR CONFIG</button>
+        <button onclick="acao('OTIMIZAÇÃO')">INJETAR OTIMIZAÇÃO</button>
+        <button onclick="acao('INTERNET')">OTIMIZAR INTERNET</button>
+        <button onclick="acao('CELULAR')">OTIMIZAR CELULAR</button>
+        <button onclick="acao('FREE FIRE')">OTIMIZAR FREE FIRE</button>
+        <br>
+        <button onclick="voltar()">VOLTAR</button>
+    </div>
+</div>
+
+<div id="toast" class="toast">INJETANDO...</div>
+<div class="watermark">by santos xit</div>
+
+<script>
+function entrar() {
+    let login = document.getElementById('login').value;
+    let senha = document.getElementById('senha').value;
+
+    if(login === 'santos' && senha === 'xiter') {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+    } else {
+        document.getElementById('erro').innerText = 'Login incorreto';
+    }
+}
+
+function abrirMenu() {
+    document.getElementById('mainMenu').classList.add('hidden');
+    document.getElementById('configMenu').classList.remove('hidden');
+}
+
+function voltar() {
+    document.getElementById('configMenu').classList.add('hidden');
+    document.getElementById('mainMenu').classList.remove('hidden');
+}
+
+function acao(tipo) {
+    let toast = document.getElementById('toast');
+    toast.innerText = 'INJETANDO ' + tipo + '...';
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 800);
+}
+</script>
+
+</body>
+</html>
